@@ -1,15 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MainBoard from './MainBoard'
+import { withStyles } from 'material-ui/styles'
+import Paper from 'material-ui/Paper'
+import PropTypes from 'prop-types'
+import Typography from 'material-ui/Typography'
+
+const styles = theme => ({
+    root: {
+        flexGrow: 5,
+        margin: 100,
+    },
+    paper: {
+        padding: 16,
+        color:'#455A64'
+
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 300,
+    }
+});
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
 
-      </div>
+  render() {
+      const { classes } = this.props;
+    return (
+      <Paper className={classes.paper} elevation="4">
+        <Typography type="display1" align="center" color="primary" >
+          This my ToDo Application</Typography>
+        <MainBoard />
+      </Paper>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(App);

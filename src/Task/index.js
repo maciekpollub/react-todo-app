@@ -2,6 +2,10 @@
  * Created by maciej on 15.01.18.
  */
 import React, { Component } from 'react';
+import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui-icons/Delete';
+
+
 
 const taskStyle = {
     done: {
@@ -23,16 +27,22 @@ class Task extends Component {
 
     handleTaskStatusChange = (e) => {
         this.setState({
-            done: e.target.done
+            done: e.target.checked
         })
     };
 
+    handleTaskDeletion = () => {
+    }
 
-    render(){
+
+        render(){
         return(
-            <div>
+            <div className="onetask">
                 <input type="checkbox" onChange={this.handleTaskStatusChange}/>
                 <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.label}</span>
+                <IconButton aria-label="Delete" color="primary">
+                    <DeleteIcon onClick={this.handleTaskDeletion}/>
+                </IconButton>
             </div>
         )
     }

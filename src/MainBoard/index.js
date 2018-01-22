@@ -5,7 +5,11 @@ import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import TextField from  'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Paper from 'material-ui/Paper';
+import TasksList from '../TasksList';
+import Paper from 'material-ui/Paper'
+
+
+
 
 class MainBoard extends Component {
 
@@ -22,32 +26,33 @@ class MainBoard extends Component {
         this.setState({
             taskPhrase: e.target.value
         });
-    }
+    };
     handleSearchPhraseChange = (e) => {
         this.setState({
             searchPhrase: e.target.value
         });
-    }
+    };
     handleSubmit = (e) => {
         this.setState({
-            tasks: this.state.tasks.concat(this.state.task),
-            task: ''
+            tasks: this.state.tasks.concat(this.state.taskPhrase),
+            taskPhrase: ''
         });
         e.preventDefault();
-    }
+    };
 
     render(){
         return(
-            <Grid container spacing={24}>
-                <Grid item xs={12} sm={6}>
-                    <Paper>
+            <Grid container justify="center" spacing={24} >
+                <Grid item justify="center" xs={12} sm={6} >
                         <TextField id="task"
                                    label="Task"
                                    value={this.state.taskPhrase}
                                    onChange={this.handleTaskPhraseChange}
-                                   margin="normal"/>
+                                   margin="normal"
+                                   width="200"
+                        />
                         <Button type="submit" raised color="primary" onClick={this.handleSubmit}>Add task</Button>
-                    </Paper>
+
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField id="search"
@@ -55,15 +60,14 @@ class MainBoard extends Component {
                                onChange={this.handleSearchPhraseChange}
                                margin="normal"/>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item justify="center" classes="justify-xs-space-between" >
                     <h1>My tasks</h1>
-                    <TaskList query={this.state.searchPhrase} tasks={this.state.taskPhrase}/>
+                    <TasksList
+                               searchPhrase={this.state.searchPhrase}
+                               tasks={this.state.tasks}/>
                 </Grid>
             </Grid>
         )
     }
 }
-export default MainBoard;
-}
-
 export default MainBoard;
