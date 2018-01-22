@@ -30,18 +30,13 @@ class Task extends Component {
             done: e.target.checked
         })
     };
-
-    handleTaskDeletion = () => {
-    }
-
-
         render(){
         return(
             <div className="onetask">
                 <input type="checkbox" onChange={this.handleTaskStatusChange}/>
-                <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.label}</span>
+                <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.name}</span>
                 <IconButton aria-label="Delete" color="primary">
-                    <DeleteIcon onClick={this.handleTaskDeletion}/>
+                    <DeleteIcon onClick={() => this.props.onDelete(this.props.name)}/>
                 </IconButton>
             </div>
         )

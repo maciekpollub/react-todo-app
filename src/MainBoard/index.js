@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 import TextField from  'material-ui/TextField';
 import Button from 'material-ui/Button';
 import TasksList from '../TasksList';
-import Paper from 'material-ui/Paper'
+
 
 
 
@@ -40,6 +40,13 @@ class MainBoard extends Component {
         e.preventDefault();
     };
 
+    handleDelete = (taskToDelete) => {
+        this.setState({
+            tasks: this.state.tasks.filter(task => taskToDelete !== task),
+            taskPhrase: ''
+        });
+    };
+
     render(){
         return(
             <Grid container justify="center" spacing={24} >
@@ -64,7 +71,9 @@ class MainBoard extends Component {
                     <h1>My tasks</h1>
                     <TasksList
                                searchPhrase={this.state.searchPhrase}
-                               tasks={this.state.tasks}/>
+                               tasks={this.state.tasks}
+                                onDelete={this.handleDelete}
+                    />
                 </Grid>
             </Grid>
         )
