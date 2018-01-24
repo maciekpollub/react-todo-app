@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui-icons/Delete';
-
+import Checkbox from 'material-ui/Checkbox';
 
 
 const taskStyle = {
@@ -33,7 +33,7 @@ class Task extends Component {
         render(){
         return(
             <div className="onetask">
-                <input type="checkbox" onChange={this.handleTaskStatusChange}/>
+                <Checkbox onChange={this.handleTaskStatusChange}></Checkbox>
                 <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.name}</span>
                 <IconButton aria-label="Delete" color="primary">
                     <DeleteIcon onClick={() => this.props.onDelete(this.props.name)}/>

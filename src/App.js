@@ -18,19 +18,19 @@ const styles = theme => ({
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 300,
+        width: 500,
     }
 });
 
 
-class App extends Component {
+class App extends Component{
 
   render() {
       const { classes } = this.props;
     return (
       <Paper className={classes.paper} elevation="4">
         <Typography type="display1" align="center" color="primary" >
-          This my ToDo Application</Typography>
+          ToDo Application</Typography>
         <MainBoard />
       </Paper>
     );
