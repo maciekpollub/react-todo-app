@@ -5,5 +5,5 @@ functionalities:
 - marking tasks as completed
 - deleting tasks
 
-
+You can see the demo [here.](https://maciekpollub.github.io/react-todo-app/)
 
