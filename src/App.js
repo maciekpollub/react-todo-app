@@ -1,44 +1,50 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import MainBoard from './MainBoard'
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import Paper from 'material-ui/Paper'
-import PropTypes from 'prop-types'
 import Typography from 'material-ui/Typography'
 
 const styles = theme => ({
-    root: {
-        flexGrow: 5,
-        margin: 100,
-    },
-    paper: {
-        padding: 16,
-        color:'#455A64'
+  root: {
+    flexGrow: 5,
+    margin: 10,
+    color: 'black'
+  },
+  paper: {
+    padding: '5%',
+    color: 'black',
+    backgroundColor: "#90CAF9",
 
-    },
-    textField: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: 500,
-    }
+
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 500,
+  },
+  typo: {
+    fontSize: 34,
+    letterSpacing: 3,
+    textAlign: "center",
+    color: "black",
+    paddingBottom: 15
+
+  }
 });
 
-
-class App extends Component{
+class App extends Component {
 
   render() {
-      const { classes } = this.props;
+    const {classes} = this.props;
     return (
-      <Paper className={classes.paper} elevation="4">
-        <Typography type="display1" align="center" color="primary" >
-          ToDo Application</Typography>
+      <Paper className={classes.paper} elevation="10">
+        <Typography className={classes.typo}>
+          ToDo App
+        </Typography>
         <MainBoard />
       </Paper>
     );
   }
 }
-
-App.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(App);
