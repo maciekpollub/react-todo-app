@@ -4,12 +4,15 @@
 import React from 'react';
 
 import Task from '../Task';
+import List from 'material-ui/List';
 
 
 const TasksList = (props) => (
-  props.tasks.filter((elem) => elem.toUpperCase().indexOf(props.searchPhrase.toUpperCase()) !== -1)
+  <List>
+    {props.tasks.filter((elem) => elem.toUpperCase().indexOf(props.searchPhrase.toUpperCase()) !== -1)
     .map((taskName, index) => (
-      <Task key={index} name={taskName} onDelete={props.onDelete}/>))
+      <Task key={index} name={taskName} onDelete={props.onDelete}/>))}
+  </List>
 );
 
 export default TasksList;

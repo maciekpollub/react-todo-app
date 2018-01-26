@@ -24,22 +24,20 @@ class Task extends Component {
     }
   }
 
-  handleTaskStatusChange = (e) => {
+  handleTaskStatusChange = () => {
     this.setState({
-      done: e.target.checked
-    })
+      done: !this.state.done
+    });
   };
 
   render() {
     return (
       <ListItem>
-        <div>
           <Checkbox onChange={this.handleTaskStatusChange}></Checkbox>
           <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.name}</span>
           <IconButton aria-label="Delete" color="primary">
             <DeleteIcon onClick={() => this.props.onDelete(this.props.name)}/>
           </IconButton>
-        </div>
       </ListItem>
     )
   }
