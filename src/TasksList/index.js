@@ -11,7 +11,7 @@ const TasksList = (props) => (
   <List>
     {props.tasks.filter((elem) => elem.name.toUpperCase().indexOf(props.searchPhrase.toUpperCase()) !== -1)
     .map((task, index) => (
-      <Task key={task.id} name={task.name} onDelete={props.onDelete}/>))}
+      <Task key={task.id} task={task} onDelete={props.onDelete}/>))}
   </List>
 );
 

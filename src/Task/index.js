@@ -34,9 +34,9 @@ class Task extends Component {
     return (
       <ListItem>
           <Checkbox onChange={this.handleTaskStatusChange}></Checkbox>
-          <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.name}</span>
+          <span style={this.state.done ? taskStyle.done : taskStyle.unDone}>{this.props.task.name}</span>
           <IconButton aria-label="Delete" color="primary">
-            <DeleteIcon onClick={() => this.props.onDelete(this.props.name)}/>
+            <DeleteIcon onClick={() => this.props.onDelete(this.props.task.id)}/>
           </IconButton>
       </ListItem>
     )

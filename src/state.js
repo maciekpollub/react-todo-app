@@ -25,7 +25,7 @@ export const createSearchingAction = phrase => ({
 });
 
 export const createDeletingAction = taskId => dispatch => {
-  database.ref('/tasks/${taskId}').remove()
+  database.ref('/tasks/taskId}').remove()
 };
 
 export const createPopulatingAction = tasks => ({
