@@ -37,7 +37,7 @@ class App extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Paper className={classes.paper} elevation="10">
+      <Paper className={classes.paper} elevation={10}>
         <Typography className={classes.typo}>
           ToDo App
         </Typography>

@@ -97,7 +97,7 @@ class MainBoard extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Card raised elevation="12">
+      <Card raised elevation={12}>
       <Grid container spacing={16} className={classes.root}>
         <Grid item xs={12}>
           <Grid container className={classes.gridCenter}>
@@ -125,7 +125,7 @@ class MainBoard extends Component {
               type="display1"
               align="center"
             >My tasks</Typography>
-            <Paper className={classes.gridCenter} elevation="6">
+            <Paper className={classes.gridCenter} elevation={6}>
               <TasksList searchPhrase={this.props.piQuery}
                          tasks={this.props.piTasksList}
                          onDelete={this.handleDeletion}

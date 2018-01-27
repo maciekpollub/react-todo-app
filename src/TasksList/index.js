@@ -9,9 +9,9 @@ import List from 'material-ui/List';
 
 const TasksList = (props) => (
   <List>
-    {props.tasks.filter((elem) => elem.toUpperCase().indexOf(props.searchPhrase.toUpperCase()) !== -1)
-    .map((taskName, index) => (
-      <Task key={index} name={taskName} onDelete={props.onDelete}/>))}
+    {props.tasks.filter((elem) => elem.name.toUpperCase().indexOf(props.searchPhrase.toUpperCase()) !== -1)
+    .map((task, index) => (
+      <Task key={task.id} name={task.name} onDelete={props.onDelete}/>))}
   </List>
 );
 
