@@ -8,10 +8,12 @@ import Button from 'material-ui/Button';
 import TasksList from '../TasksList';
 import {withStyles} from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import { database } from '../firebase.js'
+import Typography from 'material-ui/Typography';
+import Card from 'material-ui/Card';
+
 
 import { connect } from 'react-redux';
-import { createAddingAction, createSearchingAction, createDeletingAction} from '../state.js';
+import { createAddingAction, createSearchingAction, createDeletingAction, createInitializingAction} from '../state.js';
 
 
 
@@ -21,9 +23,10 @@ const mapStateToProps = state => ({
   piQuery: state.tasksReducers.query
 });
 const mapDispatchToProps = dispatch => ({
-  piAddTask: task => dispatch(createAddingAction(task)),
+  piAddTask: task => dispatch(createAddingAction(task)),//pi - abbreviation of 'props injection';)
   piSearchPhrase: phrase => dispatch(createSearchingAction(phrase)),
-  piDeleteTask: task => dispatch(createDeletingAction(task))
+  piDeleteTask: taskId => dispatch(createDeletingAction(taskId)),
+  piInitializeTasks: () => dispatch(createInitializingAction())
 });
 
 
@@ -51,27 +54,22 @@ const styles = theme => ({
     marginTop: 20,
   },
   gridFlexEnd: {
-    justifyContent: 'flex-end',
-    padding: 30
+    justifyContent: 'flex-end'
   }
 });
 
 
 class MainBoard extends Component {
 
-/*  constructor(props) {
-    super(props);
-    this.state = {
-      taskPhrase: '',
-      searchPhrase: '',
-      tasks: ['write todo application...', 'revise material from the course...']
-    }
-  }*/
   constructor(props){
     super(props);
     this.state = {
       taskPhrase: ''
     }
+  };
+
+  componentWillMount() {
+    this.props.piInitializeTasks();
   };
 
   handleTaskPhraseChange = (e) => {
@@ -85,11 +83,6 @@ class MainBoard extends Component {
   };
 
   handleSubmition = (e) => {
-    /*this.setState({
-      tasks: this.state.tasks.concat(this.state.taskPhrase),
-      taskPhrase: ''
-    });
-    e.preventDefault();*/
     this.props.piAddTask(this.state.taskPhrase);
     this.setState({
       taskPhrase: ''
@@ -98,15 +91,13 @@ class MainBoard extends Component {
   };
 
   handleDeletion = (taskToDelete) => {
-    /*this.setState({
-      tasks: this.state.tasks.filter(task => taskToDelete !== task)
-    });*/
     this.props.piDeleteTask(taskToDelete);
   };
 
   render() {
     const {classes} = this.props;
     return (
+      <Card raised elevation="12">
       <Grid container spacing={16} className={classes.root}>
         <Grid item xs={12}>
           <Grid container className={classes.gridCenter}>
@@ -121,10 +112,20 @@ class MainBoard extends Component {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Grid container className={classes.gridCenter}>
+          <Grid container className={classes.gridFlexEnd}>
+            <TextField id="search"
+                       label="Search"
+                       onChange={this.handleSearchPhraseChange}
+            />
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container direction="column" className={classes.gridCenter}>
+            <Typography
+              type="display1"
+              align="center"
+            >My tasks</Typography>
             <Paper className={classes.gridCenter} elevation="6">
-
-              <h1 align="center">My tasks</h1>
               <TasksList searchPhrase={this.props.piQuery}
                          tasks={this.props.piTasksList}
                          onDelete={this.handleDeletion}
@@ -133,16 +134,8 @@ class MainBoard extends Component {
             </Paper>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Grid container className={classes.gridFlexEnd}>
-            <TextField id="search"
-                       label="Search"
-                       onChange={this.handleSearchPhraseChange}
-                       margin="normal"
-            />
-          </Grid>
-        </Grid>
       </Grid>
+      </Card>
     )
   }
 }
